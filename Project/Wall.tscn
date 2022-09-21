@@ -1,20 +1,26 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://bin/wall.gdns" type="Script" id=1]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 1, 0.0098003, 1 )
+extents = Vector3( 0.264594, 0.0098003, 0.34723 )
 
-[sub_resource type="PlaneMesh" id=2]
+[sub_resource type="QuadMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.964706, 0.545098, 0.137255, 1 )
+normal_enabled = true
+normal_scale = 1.0
 
 [node name="Wall" type="Area"]
-transform = Transform( -4.37114e-07, 1, 0, 4.37114e-07, 1.91069e-15, -10, -10, -4.37114e-08, -4.37114e-07, -10, 10, 0 )
+transform = Transform( -4.11658e-07, 0.941762, 0, 4.37114e-07, 1.91069e-15, -10, -10, -4.37114e-08, -4.37114e-07, -10, 10, 0 )
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 4.88402, -7.86524e-08, -3.43692e-08, -2.01311e-05, 19.9018, -1.50232e-14, -3.46261e-08, -5.91284e-17, 5.63403, 0.00376358, -0.0673409, -0.00721008 )
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, -1.77636e-15, 0, -2.84217e-14, 1, 8.47033e-21, 0, 5.29396e-23, 1, 0, 0, 0 )
+transform = Transform( 2.01573, -2.40398e-09, -3.47327e-08, 6.87663e-09, -8.48405e-08, -1010.28, -2.47685e-09, 2.01118, -4.57592e-05, -0.00846329, -0.0196762, -0.00854844 )
 mesh = SubResource( 2 )
-material/0 = null
+material/0 = SubResource( 3 )

@@ -1,11 +1,11 @@
 #include "ball.h"
+#include <ctime>
 #include "wall.h"
 
 using namespace godot;
 
 
 void Ball::_register_methods() {
-    register_property<Ball, float>("speed", &Ball::speed, 0.5);
     register_property<Ball, int>("id", &Ball::id, 1);
 
     register_method("_process", &Ball::_process);
@@ -22,26 +22,39 @@ Ball::~Ball() {
 }
 
 void Ball::_on_hit(Area* area) {
-    direction = -direction;
-    Wall* n = Object::cast_to<Wall>(area);
-    Vector3 N = n->get_normal();
-    Vector3 I = direction;
-    Godot::print("--- hit ---");
-    Godot::print(N);
-    direction = I - 2*N*(N-I);
-    Godot::print(direction);
-    this->connect("area_entered", this, "_on_hit");
+    Wall* w = Object::cast_to<Wall>(area);
+    if (w != NULL) {
+        Vector3 N = w->get_normal().normalized();
+        Vector3 I = direction;
+        direction = I.bounce(N);
+        Godot::print("--- Hit ball Ball {0} hit {1} Before, {2} after {3} Normal {4}", id, w->get_name(), I, direction, N);
+        /* Godot::print("Start {0} End {1", direction); */
+    } else {
+        Godot::print("Hit ball");
+        /* Ball* b = Object::cast_to<Ball>(area);; */
+
+        /* Vector3 N = b->get_direction().normalized(); */
+        /* Vector3 I = direction.normalized(); */
+        /* direction = I.bounce(N); */
+    }
+}
+
+Vector3 Ball::get_direction() {
+    return direction;
 }
 
 void Ball::_init() {
-	speed = 0.5;
     id = 1;
-    direction = Vector3(speed, speed, speed);
-    Godot::print("Hello bruvvvv");
+    std::srand(std::time(NULL));
 }
 
 void Ball::_ready() {
     this->connect("area_entered", this, "_on_hit");
+    float x = ((float)std::rand() / RAND_MAX);
+    float y = ((float)std::rand() / RAND_MAX);
+    float z = ((float)std::rand() / RAND_MAX);
+    direction = Vector3(x, y, z);
+    Godot::print(direction);
 }
 
 void Ball::_process(float delta) {

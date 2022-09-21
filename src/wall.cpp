@@ -22,9 +22,6 @@ Wall::~Wall() {
 }
 
 void Wall::_ready() {
-    auto n = this->get_parent()->get_parent()->get_node("Circle");
-
-
 }
 
 Vector3 Wall::get_normal() {
@@ -32,7 +29,7 @@ Vector3 Wall::get_normal() {
 }
 
 void Wall::_init() {
-    Godot::print("I'm a wall hoe");
+    normal = Vector3(0, 1, 0);
 }
 
 void Wall::_process(float delta) {

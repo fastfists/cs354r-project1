@@ -11,7 +11,6 @@ class Ball : public Area {
     GODOT_CLASS(Ball, Spatial)
 
 private:
-	float speed = 3.0f;
     Vector3 direction;
     int id;
 
@@ -24,6 +23,7 @@ public:
 	void _init(); // our initializer called by Godot
 	void _process(float delta);
     void _ready();
+    Vector3 get_direction();
 
     // Signals
     void _on_hit(Area* area);
