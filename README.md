@@ -3,6 +3,9 @@
 
 Compiling using 
 ```
+cd godot-cpp/
+scons platform=linux
+cd ../
 scons platfor=linux
 ```
 
