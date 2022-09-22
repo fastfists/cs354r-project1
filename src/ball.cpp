@@ -27,15 +27,12 @@ void Ball::_on_hit(Area* area) {
         Vector3 N = w->get_normal().normalized();
         Vector3 I = direction;
         direction = I.bounce(N);
-        Godot::print("--- Hit ball Ball {0} hit {1} Before, {2} after {3} Normal {4}", id, w->get_name(), I, direction, N);
-        /* Godot::print("Start {0} End {1", direction); */
     } else {
-        Godot::print("Hit ball");
-        /* Ball* b = Object::cast_to<Ball>(area);; */
+        Ball* b = Object::cast_to<Ball>(area);
 
-        /* Vector3 N = b->get_direction().normalized(); */
-        /* Vector3 I = direction.normalized(); */
-        /* direction = I.bounce(N); */
+        Vector3 N = b->get_direction().normalized();
+        Vector3 I = direction.normalized();
+        direction = I.bounce(N);
     }
 }
 
