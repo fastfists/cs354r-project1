@@ -3,10 +3,10 @@
 
 Compiling using 
 ```
-cd godot-cpp/
-scons platform=linux
-cd ../
-scons platfor=linux
+/ $ cd godot-cpp/
+/godot-cpp/ $ scons platform=linux
+/godot-cpp/ $ cd ../
+/ $ scons platfor=linux
 ```
 
 ## Project Report
