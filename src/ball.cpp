@@ -28,11 +28,11 @@ void Ball::_on_hit(Area* area) {
         Vector3 I = direction;
         direction = I.bounce(N);
     } else {
-        // Ball* b = Object::cast_to<Ball>(area);
+        Ball* b = Object::cast_to<Ball>(area);
 
-        // Vector3 N = b->get_direction().normalized();
-        //Vector3 I = direction.normalized();
-        // direction = I.bounce(N);
+        Vector3 N = b->get_direction().normalized();
+        Vector3 I = direction.normalized();
+        direction = I.bounce(N);
     }
 }
 
